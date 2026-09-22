@@ -43,9 +43,7 @@ if st.button("🔍 Evaluar Riesgo del Envío", type="primary"):
     pred = model.predict(input_scaled)[0]
     proba = model.predict_proba(input_scaled)[0]
     
-    # NOTA TÉCNICA CORREGIDA: 
-    # proba[0] = Probabilidad de Retraso (Clase 0)
-    # proba[1] = Probabilidad de Éxito / A Tiempo (Clase 1)
+    # Asignación de probabilidades
     prob_retraso = float(proba[0])
     prob_atiempo = float(proba[1])
 
@@ -75,6 +73,6 @@ if st.button("🔍 Evaluar Riesgo del Envío", type="primary"):
     
     st.bar_chart(df_res)
     
-    # Tabla ejecutiva sin datos técnicos confusos
+    # Tabla ejecutiva con formato corregido
     st.markdown("##### Resumen de Probabilidades:")
-    st.dataframe(df_res.style.format("{:.2%}}"))
+    st.dataframe(df_res.style.format("{:.2%}"))
